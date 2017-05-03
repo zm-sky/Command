@@ -6,30 +6,24 @@
 package commands;
 
 import com.google.gson.Gson;
-import command.CommandContext;
 import command.Context;
-import java.util.List;
 import patron.Command;
 
 /**
  *
  * @author zippy
  */
-public class C_IniciarJuego implements Command{
-
+public class C_SiguienteTurno implements Command{
     String nombreComando;
-    String fraseDelJuego;
     
-    public C_IniciarJuego(String fraseDelJuego){
-        this.nombreComando="C_IniciarJuego";
-        this.fraseDelJuego=fraseDelJuego;
+    public C_SiguienteTurno(){
+        nombreComando = "C_SiguienteTurno";
     }
     
     @Override
     public void Execute() {
-        CommandContext c = Context.getContext();
-        
-        c.iniciarJuego(fraseDelJuego);
+        Context c = Context.getContext();
+        c.avanzarTurno();
     }
 
     @Override
@@ -37,5 +31,5 @@ public class C_IniciarJuego implements Command{
         Gson gson = new Gson();
         return gson.toJson(this);
     }
-
+    
 }

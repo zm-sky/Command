@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author zippy
  */
-public interface Command{
+public interface Command extends Serializable{
 //    /**
 //     * Contiene cada uno de los parametros que ocupa
 //     * el comando.

@@ -5,6 +5,8 @@ import commands.C_IniciarJuego;
 import commands.C_MovimientoCorrecto;
 import commands.C_MovimientoIncorrecto;
 import commands.C_Pierde;
+import commands.C_RegistrarTurno;
+import commands.C_SiguienteTurno;
 import network.Peer;
 import network.PeerListener;
 
@@ -38,12 +40,17 @@ public class CommandManager implements PeerListener {
     @Override
     public void objetoRecibido(Object o) {
         if (o instanceof String) {
-            Command comando = obtenerComando((String) o);
-            
-            if (comando != null) {
-                Invoker invoker = new Invoker(comando);
-                invoker.run();
-            }
+//            Command comando = obtenerComando((String) o);
+//            
+//            if (comando != null) {
+//                Invoker invoker = new Invoker(comando);
+//                invoker.run();
+//            }
+            System.out.println(o);
+        }
+        else if(o instanceof Command){
+            Invoker invoker = new Invoker((Command) o);
+            invoker.run();
         }
     }
 
@@ -57,12 +64,21 @@ public class CommandManager implements PeerListener {
      */
     private Command obtenerComando(String comandoJSON) {
         Gson gson = new Gson();
+        
         String clase = comandoJSON.substring(18, comandoJSON.indexOf("\"", 18));
-
+        
         if (clase.equals("C_MovimientoCorrecto")) {
             return gson.fromJson(comandoJSON, C_MovimientoCorrecto.class);
         }
 
+        if (clase.equals("C_RegistrarTurno")) {
+            return gson.fromJson(comandoJSON, C_RegistrarTurno.class);
+        }
+        
+        if (clase.equals("C_SiguienteTurno")) {
+            return gson.fromJson(comandoJSON, C_SiguienteTurno.class);
+        }
+        
         if (clase.equals("C_MovimientoIncorrecto")) {
             return gson.fromJson(comandoJSON, C_MovimientoIncorrecto.class);
         }
@@ -74,6 +90,8 @@ public class CommandManager implements PeerListener {
         if (clase.equals("C_Pierde")) {
             return gson.fromJson(comandoJSON, C_Pierde.class);
         }
+        
+        
         return null;
     }
 
@@ -94,6 +112,6 @@ public class CommandManager implements PeerListener {
      */
     public void mandarComando(Command command) throws Exception {
         String comandoJSON = command.convertToJSON();
-        peer.enviarObjeto(comandoJSON);
+        peer.enviarObjeto("envio");
     }
 }
