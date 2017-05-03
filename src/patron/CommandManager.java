@@ -10,6 +10,10 @@ import commands.C_SiguienteTurno;
 import network.Peer;
 import network.PeerListener;
 
+/**
+ * 
+ * @author Roberto Pedraza Coello
+ */
 public class CommandManager implements PeerListener {
 
     /**
@@ -40,17 +44,12 @@ public class CommandManager implements PeerListener {
     @Override
     public void objetoRecibido(Object o) {
         if (o instanceof String) {
-//            Command comando = obtenerComando((String) o);
-//            
-//            if (comando != null) {
-//                Invoker invoker = new Invoker(comando);
-//                invoker.run();
-//            }
-            System.out.println(o);
-        }
-        else if(o instanceof Command){
-            Invoker invoker = new Invoker((Command) o);
-            invoker.run();
+            Command comando = obtenerComando((String) o);
+            
+            if (comando != null) {
+                Invoker invoker = new Invoker(comando);
+                invoker.run();
+            }
         }
     }
 
@@ -112,6 +111,6 @@ public class CommandManager implements PeerListener {
      */
     public void mandarComando(Command command) throws Exception {
         String comandoJSON = command.convertToJSON();
-        peer.enviarObjeto("envio");
+        peer.enviarObjeto(comandoJSON);
     }
 }

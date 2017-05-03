@@ -6,6 +6,7 @@
 package commands;
 
 import com.google.gson.Gson;
+import command.Context;
 import java.io.Serializable;
 import patron.Command;
 
@@ -16,18 +17,18 @@ import patron.Command;
 public class C_MovimientoIncorrecto implements Command {
 
     String nombreComando;
-    String letraElegida;
-    String siguienteJugador;
+    Character letraElegida;
 
-    public C_MovimientoIncorrecto(String letraElegida, String siguienteJugador) {
-        this.nombreComando = "C_MovimientoCorrecto";
+    public C_MovimientoIncorrecto(Character letraElegida) {
+        this.nombreComando = "C_MovimientoIncorrecto";
         this.letraElegida = letraElegida;
-        this.siguienteJugador = siguienteJugador;
     }
 
     @Override
     public void Execute() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Context c = Context.getContext();
+        c.agregarLetra(letraElegida);
+        c.avanzarTurno();
     }
 
     @Override

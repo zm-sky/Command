@@ -6,6 +6,7 @@
 package commands;
 
 import com.google.gson.Gson;
+import command.Context;
 import patron.Command;
 
 /**
@@ -23,8 +24,8 @@ public class C_Pierde implements Command{
     }
     @Override
     public void Execute() {
-        System.out.println("Has perdido el juego");
-        System.exit(0);
+        Context c = Context.getContext();
+        c.setGanador(ganador);
     }
 
     @Override

@@ -13,7 +13,7 @@ import patron.Command;
 
 /**
  *
- * @author zippy
+ * @author Roberto Pedraza Coello
  */
 public class C_IniciarJuego implements Command{
 
