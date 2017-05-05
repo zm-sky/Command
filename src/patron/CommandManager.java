@@ -4,9 +4,9 @@ import com.google.gson.Gson;
 import commands.C_IniciarJuego;
 import commands.C_MovimientoCorrecto;
 import commands.C_MovimientoIncorrecto;
-import commands.C_Pierde;
 import commands.C_RegistrarTurno;
 import commands.C_SiguienteTurno;
+import commands.C_TerminarJuego;
 import network.Peer;
 import network.PeerListener;
 
@@ -86,8 +86,8 @@ public class CommandManager implements PeerListener {
             return gson.fromJson(comandoJSON, C_IniciarJuego.class);
         }
 
-        if (clase.equals("C_Pierde")) {
-            return gson.fromJson(comandoJSON, C_Pierde.class);
+        if (clase.equals("C_TerminarJuego")) {
+            return gson.fromJson(comandoJSON, C_TerminarJuego.class);
         }
         
         

@@ -27,7 +27,7 @@ public class C_MovimientoIncorrecto implements Command {
     @Override
     public void Execute() {
         Context c = Context.getContext();
-        c.agregarLetra(letraElegida);
+        c.agregarLetraIncorrecta(letraElegida);
         c.avanzarTurno();
     }
 

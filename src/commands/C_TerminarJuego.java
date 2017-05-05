@@ -13,19 +13,20 @@ import patron.Command;
  *
  * @author zippy
  */
-public class C_Pierde implements Command{
+public class C_TerminarJuego implements Command{
     
     String nombreComando;
     String ganador;
     
-    public C_Pierde(String ganador){
-        this.nombreComando="C_Pierde";
+    public C_TerminarJuego(String ganador){
+        this.nombreComando="C_TerminarJuego";
         this.ganador=ganador;
     }
+    
     @Override
     public void Execute() {
         Context c = Context.getContext();
-        c.setGanador(ganador);
+        c.finalizarJuego(ganador);
     }
 
     @Override

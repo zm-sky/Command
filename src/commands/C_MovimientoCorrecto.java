@@ -25,7 +25,8 @@ public class C_MovimientoCorrecto implements Command{
     @Override
     public void Execute() {
         Context c = Context.getContext();
-        c.agregarLetra(letraElegida);
+        c.agregarLetraCorrecta(letraElegida);
+        c.resetearTimer();
     }
 
     @Override
